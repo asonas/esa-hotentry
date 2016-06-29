@@ -1,0 +1,12 @@
+*一週間分の記事でより沢山の反応のあった記事のリンク週です*
+
+<% ranking.take(10).each.with_index(1) do |post, index| %>
+## **<%=post.point%>**ポイント <%= post.link %>
+
+* :star2: <%= post.stargazers_count %>
+* :speech_balloon: <%= post.comments_count %>
+* :eyes: <%= post.watchers_count %>
+
+<%= post.link %> - <%= post.url %>
+> <%= post.summary %>
+<% end %>
