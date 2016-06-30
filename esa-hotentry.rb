@@ -1,5 +1,6 @@
 require 'esa'
 require 'erb'
+require 'active_support/all'
 
 module EsaHotentry
   def self.generate_ranking
@@ -67,7 +68,7 @@ module EsaHotentry
     end
 
     def fetch_all_posts
-      date = Date.new(2016, 6, 22).strftime("%Y-%m-%d")
+      date = 1.week.ago.strftime("%Y-%m-%d")
       res = @client.posts(q: "created:>#{date}", per_page: 100)
       @posts = res.body["posts"].map { |p| Post.new(p) }
 
