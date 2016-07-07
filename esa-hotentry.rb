@@ -29,6 +29,7 @@ module EsaHotentry
       @url = raw_post["url"]
       @number = raw_post["number"]
       @title = raw_post["full_name"]
+      @created_at = raw_post["created_at"]
       @point = sum_point
     end
 
@@ -41,9 +42,32 @@ module EsaHotentry
       "[#{@title}](#{@url})"
     end
 
+    def rate
+      diff = (Date.today - Date.parse(@created_at)).to_i
+
+      case diff
+      when 1
+        1.2
+      when 2
+        1.0
+      when 3
+        0.9
+      when 4
+        0.8
+      when 5
+        0.5
+      when 6
+        0.4
+      when 7
+        0.3
+      else
+        0.1
+      end
+    end
+
     private
     def sum_point
-      stargazers_point  + comments_point + watchers_point
+      ((stargazers_point  + comments_point + watchers_point) * rate).to_i
     end
 
     def stargazers_point
