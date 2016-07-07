@@ -16,8 +16,8 @@ module EsaHotentry
   class Post
     attr_accessor :point, :title, :url, :stargazers_count, :watchers_count, :comments_count
 
-    STARGAZER_POINT = 10
-    COMMENT_POINT = 5
+    STARGAZER_POINT = 7
+    COMMENT_POINT = 10
     WATCH_POINT = 1
 
     def initialize(raw_post)
