@@ -88,7 +88,7 @@ module EsaHotentry
     end
 
     def watchers_point
-      @watchers_count * WATCH_POINT - @stargazers_count
+      (@watchers_count - @stargazers_count) * WATCH_POINT
     end
   end
 
