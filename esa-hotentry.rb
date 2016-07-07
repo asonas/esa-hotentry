@@ -34,7 +34,8 @@ module EsaHotentry
     end
 
     def summary
-      @body_md.gsub("\r\n", "")[1..100]
+      delete_unneeded_lines if @title.include?("日報")
+      @body_md.gsub("\r\n", "")[0..100]
     end
 
     # decorator
@@ -66,6 +67,14 @@ module EsaHotentry
     end
 
     private
+
+    def delete_unneeded_lines
+      @body_md.each_line do |line|
+        break if line.include?("本日の作業内容")
+        @body_md.delete!(line)
+      end
+    end
+
     def sum_point
       ((stargazers_point  + comments_point + watchers_point) * rate).to_i
     end
