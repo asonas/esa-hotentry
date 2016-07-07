@@ -3,9 +3,7 @@
 <% ranking.take(10).each.with_index(1) do |post, index| %>
 ## **<%=post.point%>**ポイント <%= post.link %>
 
-* :star2: <%= post.stargazers_count %>
-* :speech_balloon: <%= post.comments_count %>
-* :eyes: <%= post.watchers_count %>
+:star2: **<%= post.stargazers_count %> -** :speech_balloon: **<%= post.comments_count %> -** :eyes: **<%= post.watchers_count %>**
 
 <%= post.link %> - <%= post.url %>
 > <%= post.summary %>
