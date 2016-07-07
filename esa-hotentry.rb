@@ -69,11 +69,11 @@ module EsaHotentry
 
     def fetch_all_posts
       date = 1.week.ago.strftime("%Y-%m-%d")
-      res = @client.posts(q: "created:>#{date}", per_page: 100)
+      res = @client.posts(q: "created:>#{date} -keyword:ホッテントリ", per_page: 100)
       @posts = res.body["posts"].map { |p| Post.new(p) }
 
       while res.body["next_page"] != nil
-        res = @client.posts(q: "created:>#{date}", per_page: 100, page: res.body["next_page"])
+        res = @client.posts(q: "created:>#{date} -keyword:ホッテントリ", per_page: 100, page: res.body["next_page"])
         @posts += res.body["posts"].map { |p| Post.new(p) }
       end
     end
